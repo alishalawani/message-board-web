@@ -1,10 +1,10 @@
 import React from 'react';
 import './MessageBoard.css';
 import moment from 'moment';
+import NewMsgForm from './NewMsgForm';
 function MessageBoard({ messages, setMessages }) {
 	return (
 		<div className='container'>
-            <a className='newMessageButton'>+ New Message</a>
 			<ul className='scrollable'>
 				{messages ? (
 					messages.map((message, index) => {
@@ -24,6 +24,7 @@ function MessageBoard({ messages, setMessages }) {
 					</li>
 				)}
 			</ul>
+            <NewMsgForm setMessages={setMessages}/>
 		</div>
 	);
 }
