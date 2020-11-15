@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Route } from 'react-router';
+import Header from './Components/Header';
 import MessageBoard from './Components/MessageBoard';
-
+import About from './Components/About';
 function App() {
 	const url = 'https://message-board-db.herokuapp.com/api/messages';
 	const [messages, setMessages] = useState([]);
@@ -16,10 +18,12 @@ function App() {
 	}, []);
 	return (
 		<div>
-			<header>
-				
-			</header>
-    <MessageBoard messages={messages} setMessages={setMessages}/>
+		<Header/>
+    
+    <Route path='/' exact render={()=>{
+ return <MessageBoard messages={messages} setMessages={setMessages}/>
+    }}/>
+    <Route path='/about' component={About}/>
 		</div>
 	);
 }
