@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import MessageBoard from './Components/MessageBoard';
 
 function App() {
 	const url = 'https://message-board-db.herokuapp.com/api/messages';
@@ -8,18 +8,18 @@ function App() {
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-				setMessages([...res]);
+        setMessages([...res]);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
 	return (
-		<div className='App'>
-			<header className='App-header'>
+		<div>
+			<header>
 				
 			</header>
-
+    <MessageBoard messages={messages} setMessages={setMessages}/>
 		</div>
 	);
 }

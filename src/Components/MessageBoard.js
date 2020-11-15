@@ -1,25 +1,31 @@
 import React from 'react';
-
-function MessageBoard(props) {
-    return (
-			<div>
+import './MessageBoard.css';
+import moment from 'moment';
+function MessageBoard({ messages, setMessages }) {
+	return (
+		<div className='container'>
+            <a className='newMessageButton'>+ New Message</a>
+			<ul className='scrollable'>
 				{messages ? (
 					messages.map((message, index) => {
 						return (
-							<li style={{ width: '90%' }} key={index}>
-								<p>
+							<li className='message-block' key={index}>
+								<p className='time'>
 									{moment(message['created_at']).startOf('hour').fromNow()}
 								</p>
-								<p>{message.subject}</p>
-								<p>{message.message}</p>
+								<p className='subject'>{message.subject}</p>
+								<p className='message'>{message.message}</p>
 							</li>
 						);
 					})
 				) : (
-					<p>Messages loading...</p>
+					<li>
+						<p>Messages loading...</p>
+					</li>
 				)}
-			</div>
-		);
+			</ul>
+		</div>
+	);
 }
 
 export default MessageBoard;

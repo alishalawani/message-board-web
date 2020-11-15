@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+	width: 90%;
+	margin: 0 auto;
+    justify-content: center;
+}
+
+.message-block {
+    margin-bottom: 20px;
+}
+.time .subject .message {
+    margin: 0;
+}
+.time {
+    font-size: 10px;
+    margin-bottom: -0px;
+}
+.subject {
+    margin: 0;
+    background-color: rgb(9,90,900);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+.message {
+    margin: 0;
+    background-color: dodgerblue;
+    padding: 10px;
+}
+.scrollable {
+	align-self: center;
+	justify-content: center;
+	width: 50%;
+	height: 70vh;
+	list-style-type: none;
+    overflow: scroll;
+    padding: 30px;
+}
+@media(max-width:600px){
+	.vector{
+		width: 90%;
+	}
+	.info{
+		width: 100%;
+	}
+}
