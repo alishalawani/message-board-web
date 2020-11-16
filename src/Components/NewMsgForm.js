@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 import './NewMsgForm.css';
-function NewMsgForm({ setMessages }) {
+function NewMsgForm({ setMessages, subscriptionObj }) {
 	const url = 'https://message-board-db.herokuapp.com/api/messages';
+	const pushUrl = 'https://message-board-db.herokuapp.com/subscribe';
 	const [message, setMessage] = useState('');
 	const [subject, setSubject] = useState('');
+
+	function sendPush() {
+		console.log('Sending Push...');
+		fetch(pushUrl, {
+			method: 'POST',
+			body: JSON.stringify(subscriptionObj),
+			headers: {
+				'content-type': 'application/json',
+			},
+		}).catch(console.error)
+		console.log('Push Sent...');
+	}
+
 	function clearInputs() {
 		setMessage('');
 		setSubject('');
 	}
 	const handleSend = (event) => {
-        event.preventDefault()
+		event.preventDefault();
 		if (message && subject) {
 			fetch(url, {
 				method: 'POST',
@@ -22,17 +36,18 @@ function NewMsgForm({ setMessages }) {
 				.then((res) => {
 					clearInputs();
 					setMessages([...res]);
+					sendPush()
 				});
 		}
 	};
-	const handleChange = (event)=>{
-        event.preventDefault();
-        if(event.target.name === 'subject'){
-            setSubject(event.target.value)
-        }else{
-            setMessage(event.target.value)
-        }
-    };
+	const handleChange = (event) => {
+		event.preventDefault();
+		if (event.target.name === 'subject') {
+			setSubject(event.target.value);
+		} else {
+			setMessage(event.target.value);
+		}
+	};
 	return (
 		<form className='form' onSubmit={handleSend}>
 			<label htmlFor='subject'> Subject:</label>
@@ -53,9 +68,10 @@ function NewMsgForm({ setMessages }) {
 				className='input messageInput'
 				onChange={handleChange}
 			/>
-            <div><input type='submit' value='Submit' className='submitButton' />{' '}
-			<button className='submitButton'>Clear</button></div>
-			
+			<div className='buttonsContainer'>
+				<input type='submit' value='Submit' className='submitButton' />{' '}
+				<button className='submitButton' onClick={clearInputs}>Clear</button>
+			</div>
 		</form>
 	);
 }

@@ -4,6 +4,7 @@
 	width: 90%;
 	margin: 0 auto;
     justify-content: center;
+    height: auto;
 }
 
 .message-block {
@@ -32,16 +33,14 @@
 	align-self: center;
 	justify-content: center;
 	width: 50%;
-	height: 60vh;
+	height: 50vh;
 	list-style-type: none;
     overflow: scroll;
     padding: 30px;
+    border-top:1px solid rgb(44, 150, 62);
 }
 @media(max-width:600px){
-	.vector{
-		width: 90%;
-	}
-	.info{
-		width: 100%;
-	}
+	.scrollable{
+        width: 100%;
+    }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './MessageBoard.css';
 import moment from 'moment';
 import NewMsgForm from './NewMsgForm';
-function MessageBoard({ messages, setMessages }) {
+function MessageBoard({ messages, setMessages, subscriptionObj }) {
 	return (
 		<div className='container'>
 			<ul className='scrollable'>
@@ -24,7 +24,7 @@ function MessageBoard({ messages, setMessages }) {
 					</li>
 				)}
 			</ul>
-            <NewMsgForm setMessages={setMessages}/>
+            <NewMsgForm setMessages={setMessages} subscriptionObj={subscriptionObj}/>
 		</div>
 	);
 }
