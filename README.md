@@ -13,4 +13,4 @@ npm start
 - Navigation
 
 ## Grows
-- The push notification is currently not functioning, the service worker setup needs more work and debugging
+- The frontend push notification is currently not functioning, the service worker setup needs more work and debugging
