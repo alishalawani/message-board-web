@@ -3,6 +3,11 @@
 ## A Simple Message Board App
 
 ### Running the app
+Install dependencies by running
+```
+npm i
+```
+Start app by running
 ```
 npm start
 ```
