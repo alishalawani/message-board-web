@@ -67,7 +67,9 @@ function NewMsgForm({ setMessages, subscriptionObj }) {
 				onChange={handleChange}
 			/>
 			<div className='buttonsContainer'>
-				<input type='submit' value='Submit' className='submitButton' />{' '}
+				<button className='submitButton' type='submit' >
+					Post
+				</button>{' '}
 				<button className='submitButton' onClick={clearInputs}>
 					Clear
 				</button>
