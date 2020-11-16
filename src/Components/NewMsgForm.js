@@ -7,15 +7,13 @@ function NewMsgForm({ setMessages, subscriptionObj }) {
 	const [subject, setSubject] = useState('');
 
 	function sendPush() {
-		console.log('Sending Push...');
 		fetch(pushUrl, {
 			method: 'POST',
 			body: JSON.stringify(subscriptionObj),
 			headers: {
 				'content-type': 'application/json',
 			},
-		}).catch(console.error)
-		console.log('Push Sent...');
+		}).catch(console.error);
 	}
 
 	function clearInputs() {
@@ -36,7 +34,7 @@ function NewMsgForm({ setMessages, subscriptionObj }) {
 				.then((res) => {
 					clearInputs();
 					setMessages([...res]);
-					sendPush()
+					sendPush();
 				});
 		}
 	};
@@ -70,7 +68,9 @@ function NewMsgForm({ setMessages, subscriptionObj }) {
 			/>
 			<div className='buttonsContainer'>
 				<input type='submit' value='Submit' className='submitButton' />{' '}
-				<button className='submitButton' onClick={clearInputs}>Clear</button>
+				<button className='submitButton' onClick={clearInputs}>
+					Clear
+				</button>
 			</div>
 		</form>
 	);

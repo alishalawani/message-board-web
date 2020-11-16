@@ -24,7 +24,7 @@ function MessageBoard({ messages, setMessages, subscriptionObj }) {
 					</li>
 				)}
 			</ul>
-            <NewMsgForm setMessages={setMessages} subscriptionObj={subscriptionObj}/>
+			<NewMsgForm setMessages={setMessages} subscriptionObj={subscriptionObj} />
 		</div>
 	);
 }

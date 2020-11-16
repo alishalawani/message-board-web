@@ -6,17 +6,19 @@ import About from './Components/About';
 function App() {
 	const url = 'https://message-board-db.herokuapp.com/api/messages';
 	const [messages, setMessages] = useState([]);
-	const [subscriptionObj, setSubscriptionObj] = useState({})
+	const [subscriptionObj, setSubscriptionObj] = useState({});
 	useEffect(() => {
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-        setMessages([...res]);
+				setMessages([...res]);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
+
+	// Service worker and push notification setup
 	const publicVapidKey =
 		'BJEoexrZhPFrUHqDVSXFB5xkGb7X0pNg7knp-3okSNSD4at2j1wIgyyRKgQ50NroSvUnrBz0yQyASad3x3gGODE';
 
@@ -32,7 +34,6 @@ function App() {
 		const register = await navigator.serviceWorker.register('/worker.js', {
 			scope: './',
 		});
-		console.log('Service Worker Registered...');
 
 		//register push
 		console.log('Register Push...');
@@ -40,11 +41,7 @@ function App() {
 			userVisibleOnly: true,
 			applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
 		});
-		setSubscriptionObj(subscription)
-		console.log('Push Registered...');
-
-		//send push notification
-	
+		setSubscriptionObj(subscription);
 	}
 
 	function urlBase64ToUint8Array(base64String) {
@@ -60,15 +57,26 @@ function App() {
 			outputArray[i] = rawData.charCodeAt(i);
 		}
 		return outputArray;
-	}
+	} //end of service worker and push notification setup
+
 	return (
 		<div>
-		<Header/>
-    
-    <Route path='/' exact render={()=>{
- return <MessageBoard messages={messages} setMessages={setMessages} subscriptionObj={subscriptionObj}/>
-    }}/>
-    <Route path='/about' component={About}/>
+			<Header />
+
+			<Route
+				path='/'
+				exact
+				render={() => {
+					return (
+						<MessageBoard
+							messages={messages}
+							setMessages={setMessages}
+							subscriptionObj={subscriptionObj}
+						/>
+					);
+				}}
+			/>
+			<Route path='/about' component={About} />
 		</div>
 	);
 }
